@@ -1,0 +1,19 @@
+# directories?
+node_modules/
+
+# files
+*.tgz
+*.log
+*.zip
+
+# vim
+*.swp
+*.swo
+
+# general vim gitignore files
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
