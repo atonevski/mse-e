@@ -170,7 +170,7 @@ vue = new Vue
       
       console.log trns
       @trns   = trns
-      @bonds  = 
+      @bonds  = bonds
       @totals = totals
       @change = change
 

@@ -159,8 +159,6 @@ vue = new Vue({
         ws = wb.Sheets.Sheet1;
         rcount = ws['!rows'].length;
         inbonds = false;
-        console.log(ws);
-        console.log(rcount);
         date = this.dmyToDate(ws['A2'].v.slice(ws['A2'].v.length - 10));
         console.log(date);
         for (r = j = 4, ref1 = rcount; 4 <= ref1 ? j <= ref1 : j >= ref1; r = 4 <= ref1 ? ++j : --j) {
@@ -225,7 +223,7 @@ vue = new Vue({
       this.bonds = bonds;
       this.change = change;
       this.totals = totals;
-      return console.log(companies);
+      return console.log(this.companies);
     },
     loadWeekly: function() {
       var all, promises, wbs, wd;

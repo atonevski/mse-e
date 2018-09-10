@@ -125,8 +125,8 @@ vue = new Vue
         ws      = wb.Sheets.Sheet1
         rcount  = ws['!rows'].length
         inbonds = no
-        console.log ws
-        console.log rcount
+        # console.log ws
+        # console.log rcount
         date = @dmyToDate ws['A2'].v.slice(ws['A2'].v.length - 10)
         console.log date
         for r in [4 .. rcount]
@@ -177,7 +177,8 @@ vue = new Vue
       @bonds      = bonds
       @change     = change
       @totals     = totals
-      console.log companies
+      console.log @companies
+      
     
     loadWeekly: () ->
       # reset data

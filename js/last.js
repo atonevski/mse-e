@@ -197,7 +197,8 @@ vue = new Vue({
       }
       console.log(trns);
       this.trns = trns;
-      this.bonds = this.totals = totals;
+      this.bonds = bonds;
+      this.totals = totals;
       return this.change = change;
     }
   },

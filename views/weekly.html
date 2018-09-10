@@ -23,6 +23,8 @@
       tbody.totals { font-weight: bold; }
 
       body { margin-top: 50px; }
+      td.total { font-weight: bold; }
+      td.tborder { border-top: 1px solid #bbb !important; }
     </style>
   </head>
   <body class='container'>
@@ -39,10 +41,53 @@
       </div>
 
     <div id='app'>
-      <h3 v-show='date !== null'>Aggregated weekly report for <span>{{ from | toDMY('.') }}</span>&mdash;<span>{{ to | toDMY('.') }}</span></h3>
+      <h3 v-show='date !== null'>Aggregated weekly report for
+            <span>{{ from | toDMY('.') }}</span>&mdash;<span>{{ to | toDMY('.') }}</span>
+      </h3>
       
-      <div class='table-responsive' v-show='Object.keys(companies) > 0'>
+      <div class='table-responsive' v-show='Object.keys(companies).length > 0'>
+        <!--
         <p v-for='(trns, company) in companies'>{{ company }}</p>
+        -->
+        <table class='table table-striped table-hover table-condensed'>
+          <tbody v-for='(trns, company) in companies'>
+            <tr><th colspan='4'>{{ company }}</th></tr>
+            <tr>
+              <th class='left'>Date</th>
+              <th class='right'>Price</th>
+              <th class='right'>Shares (qty)</th>
+              <th class='right'>Total</th>
+            </tr>
+            <tr v-for='t in trns'>
+              <td align='left'>{{ t.date | toDMY('.') }}</td>
+              <td align='right' v-bind:class="{ 'text-success': t.raise > 0,
+                  'text-danger': t.raise < 0 }">
+                {{ Math.ceil(t.price) | number }}
+              </td>
+              <td align='right'>{{ t.shares | number }}</td>
+              <td align='right'>{{ t.turnover | number }}</td>
+            </tr>
+            <tr>
+              <td colspan='2'></td>
+              <td align='right' class='total tborder'>
+                {{ trns.reduce(function(a, c) { return a + c.shares }, 0) | number }}
+              </td>
+              <td align='right' class='total tborder'>
+                {{ trns.reduce(function(a, c) { return a + c.turnover }, 0) | number }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 v-show='Object.keys(companies).length > 0'>
+        Total {{ totals.companies | number }}
+      </h4>
+      <div class='row col-md-6' v-show='Object.keys(companies).length > 0'>
+        <dl class='dl-horizontal'>
+          <dt>Winners</dt><dd class='text-success'>{{ change.win }}</dd>
+          <dt>Loosers</dt><dd class='text-danger'>{{ change.loss }}</dd>
+          <dt>Winners</dt><dd>{{ change.even }}</dd>
+        </dl>
       </div>
     </div> <!-- #app -->
     <script src='../js/weekly.js'></script>
