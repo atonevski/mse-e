@@ -37,10 +37,10 @@ opts =
 #  calendarWeeks: yes
 
 
-$('#example')
+$('#pickdate')
   .datetimepicker(opts)
   .on 'dp.change', () ->
-    vue.setDate new Date($('#example').data('date'))
+    vue.setDate new Date($('#pickdate').data('date'))
 
 vue = new Vue
   el: '#app'
@@ -86,6 +86,7 @@ vue = new Vue
 
     processReport: () ->
       @trns = []
+      console.log @wb
 
       ws      = @wb.Sheets.Sheet1
       rcount  = ws['!rows'].length
@@ -133,7 +134,7 @@ vue = new Vue
       
       console.log trns
       @trns   = trns
-      @bonds  = 
+      @bonds  = bonds
       @totals = totals
       @change = change
 

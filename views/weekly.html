@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>MSE: Aggregated weekly report</title>
+
+    <link rel="stylesheet" href="../css/bootstrap-solarized-light.css">
+    <link rel="stylesheet" href="../css/bootstrap-datetimepicker.css">
+
+<!--
+    <script src='../js/jquery-1.12.4.min.js'></script>
+-->
+    <script>window.$ = window.jQuery = require('../js/jquery-1.12.4.min.js');</script>
+    <script src='../js/bootstrap.min.js'></script>
+    <script src='../js/moment.min.js'></script>
+    <script src='../js/vue.js'></script>
+    <script src='../js/bootstrap-datetimepicker.min.js'></script>
+
+    <style>
+      th.center { text-align: center; }
+      th.left { text-align: left; }
+      th.right { text-align: right; }
+      tbody.totals { font-weight: bold; }
+
+      body { margin-top: 50px; }
+    </style>
+  </head>
+  <body class='container'>
+      
+      <div class='row'>
+        <div class='col-md-4'>
+          <div class="input-group date" id="pickdate">
+            <input type="text" class="form-control" />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span> 
+            </span>
+          </div>
+        </div>
+      </div>
+
+    <div id='app'>
+      <h3 v-show='date !== null'>Aggregated weekly report for <span>{{ from | toDMY('.') }}</span>&mdash;<span>{{ to | toDMY('.') }}</span></h3>
+      
+      <div class='table-responsive' v-show='Object.keys(companies) > 0'>
+        <p v-for='(trns, company) in companies'>{{ company }}</p>
+      </div>
+    </div> <!-- #app -->
+    <script src='../js/weekly.js'></script>
+  </body>
+</html>

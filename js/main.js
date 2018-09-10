@@ -41,7 +41,11 @@ createWindow = function() {
           },
           accelerator: 'Ctrl+D'
         }, {
-          label: 'Weekly'
+          label: 'Weekly',
+          click: function() {
+            return win.loadFile('./views/weekly.html');
+          },
+          accelerator: 'Ctrl+W'
         }, {
           label: 'Monthly'
         }

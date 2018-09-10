@@ -45,7 +45,11 @@ createWindow = () ->
           click: () -> win.loadFile './views/daily.html'
           accelerator: 'Ctrl+D'
         },
-        { label: 'Weekly' },
+        {
+          label: 'Weekly'
+          click: () -> win.loadFile './views/weekly.html'
+          accelerator: 'Ctrl+W'
+        },
         { label: 'Monthly' }
       ]
     },

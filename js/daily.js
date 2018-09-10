@@ -51,8 +51,8 @@ opts = {
   })
 };
 
-$('#example').datetimepicker(opts).on('dp.change', function() {
-  return vue.setDate(new Date($('#example').data('date')));
+$('#pickdate').datetimepicker(opts).on('dp.change', function() {
+  return vue.setDate(new Date($('#pickdate').data('date')));
 });
 
 vue = new Vue({
@@ -97,6 +97,7 @@ vue = new Vue({
     processReport: function() {
       var Ar, Br, Cr, Hr, Ir, Jr, bonds, change, i, inbonds, r, rcount, ref, totals, trns, ws;
       this.trns = [];
+      console.log(this.wb);
       ws = this.wb.Sheets.Sheet1;
       rcount = ws['!rows'].length;
       inbonds = false;
@@ -164,7 +165,8 @@ vue = new Vue({
       }
       console.log(trns);
       this.trns = trns;
-      this.bonds = this.totals = totals;
+      this.bonds = bonds;
+      this.totals = totals;
       return this.change = change;
     },
     loadDaily: function() {
