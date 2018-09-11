@@ -41,14 +41,11 @@
       </div>
 
     <div id='app'>
-      <h3 v-show='date !== null'>Aggregated weekly report for
+      <h3 v-show='Object.keys(companies).length > 0'>Aggregated weekly report for
             <span>{{ from | toDMY('.') }}</span>&mdash;<span>{{ to | toDMY('.') }}</span>
       </h3>
       
       <div class='table-responsive' v-show='Object.keys(companies).length > 0'>
-        <!--
-        <p v-for='(trns, company) in companies'>{{ company }}</p>
-        -->
         <table class='table table-striped table-hover table-condensed'>
           <tbody v-for='(trns, company) in companies'>
             <tr><th colspan='4'>{{ company }}</th></tr>
@@ -89,6 +86,49 @@
           <dt>Winners</dt><dd>{{ change.even }}</dd>
         </dl>
       </div>
+
+
+      <h3 v-show='Object.keys(bonds).length > 0'>Aggregated weekly report for bonds
+            <span>{{ from | toDMY('.') }}</span>&mdash;<span>{{ to | toDMY('.') }}</span>
+      </h3>
+      <div class='table-responsive' v-show='Object.keys(bonds).length > 0'>
+        <table class='table table-striped table-hover table-condensed'>
+          <tbody v-for='(bnd, title) in bonds'>
+            <tr><th colspan='4'>{{ title }}</th></tr>
+            <tr>
+              <th class='left'>Date</th>
+              <th class='right'>Price</th>
+              <th class='right'>Qty</th>
+              <th class='right'>Total</th>
+            </tr>
+            <tr v-for='b in bnd'>
+              <td align='left'>{{ b.date | toDMY('.') }}</td>
+              <td align='right'>
+                {{ Math.ceil(b.price) | number }}
+              </td>
+              <td align='right'>{{ b.qty | number }}</td>
+              <td align='right'>{{ b.turnover | number }}</td>
+            </tr>
+            <tr>
+              <td colspan='2'></td>
+              <td align='right' class='total tborder'>
+                {{ bnd.reduce(function(a, c) { return a + c.qty }, 0) | number }}
+              </td>
+              <td align='right' class='total tborder'>
+                {{ bnd.reduce(function(a, c) { return a + c.turnover }, 0) | number }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 v-show='Object.keys(bonds).length > 0'>
+        Total {{ Math.ceil(totals.bonds) | number }}
+      </h4>
+
+      <h3 v-show='Object.keys(companies).length > 0'>
+        Total sales {{ Math.ceil(totals.bonds + totals.companies) | number }}
+      </h3>
+    </div> <!-- #app -->
     </div> <!-- #app -->
     <script src='../js/weekly.js'></script>
   </body>
