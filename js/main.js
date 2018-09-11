@@ -47,7 +47,11 @@ createWindow = function() {
           },
           accelerator: 'Ctrl+W'
         }, {
-          label: 'Monthly'
+          label: 'Monthly',
+          click: function() {
+            return win.loadFile('./views/monthly.html');
+          },
+          accelerator: 'Ctrl+M'
         }
       ]
     }, {

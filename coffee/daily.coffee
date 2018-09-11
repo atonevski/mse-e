@@ -29,6 +29,7 @@ maxDateOpt = () ->
     else d
     
 opts =
+  defaultDate: false
   format: 'YYYY-MM-DD'
   minDate: new Date('2003-01-01')
   maxDate: maxDateOpt() # set last date not to be sat or sun
@@ -40,6 +41,8 @@ opts =
 $('#pickdate')
   .datetimepicker(opts)
   .on 'dp.change', () ->
+    vue.setDate new Date($('#pickdate').data('date'))
+  .on 'dp.update', () ->
     vue.setDate new Date($('#pickdate').data('date'))
 
 vue = new Vue

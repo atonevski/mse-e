@@ -50,7 +50,11 @@ createWindow = () ->
           click: () -> win.loadFile './views/weekly.html'
           accelerator: 'Ctrl+W'
         },
-        { label: 'Monthly' }
+        {
+          label: 'Monthly'
+          click: () -> win.loadFile './views/monthly.html'
+          accelerator: 'Ctrl+M'
+        }
       ]
     },
     { label: 'Quit', accelerator: 'Ctrl+Q', click: () -> app.quit() }

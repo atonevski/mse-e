@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset='utf-8'>
-    <title>MSE: Aggregated weekly report</title>
+    <title>MSE: Aggregated monthly report</title>
 
     <link rel="stylesheet" href="../css/bootstrap-solarized-light.css">
     <link rel="stylesheet" href="../css/bootstrap-datetimepicker.css">
@@ -41,7 +41,7 @@
       </div>
 
     <div id='app'>
-      <h3 v-show='Object.keys(companies).length > 0'>Aggregated weekly report for
+      <h3 v-show='Object.keys(companies).length > 0'>Aggregated monthly report for
             <span>{{ from | toDMY('.') }}</span>&mdash;<span>{{ to | toDMY('.') }}</span>
       </h3>
       
@@ -90,7 +90,7 @@
       </div>
 
 
-      <h3 v-show='Object.keys(bonds).length > 0'>Aggregated weekly report for bonds
+      <h3 v-show='Object.keys(bonds).length > 0'>Aggregated monthly report for bonds
             <span>{{ from | toDMY('.') }}</span>&mdash;<span>{{ to | toDMY('.') }}</span>
       </h3>
       <div class='table-responsive' v-show='Object.keys(bonds).length > 0'>
@@ -131,6 +131,6 @@
         Total sales {{ Math.ceil(totals.bonds + totals.companies) | number }}
       </h3>
     </div> <!-- #app -->
-    <script src='../js/weekly.js'></script>
+    <script src='../js/monthly.js'></script>
   </body>
 </html>

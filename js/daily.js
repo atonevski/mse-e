@@ -40,6 +40,7 @@ maxDateOpt = function() {
 };
 
 opts = {
+  defaultDate: false,
   format: 'YYYY-MM-DD',
   minDate: new Date('2003-01-01'),
   maxDate: maxDateOpt(),
@@ -52,6 +53,8 @@ opts = {
 };
 
 $('#pickdate').datetimepicker(opts).on('dp.change', function() {
+  return vue.setDate(new Date($('#pickdate').data('date')));
+}).on('dp.update', function() {
   return vue.setDate(new Date($('#pickdate').data('date')));
 });
 
