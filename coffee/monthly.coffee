@@ -43,7 +43,9 @@ opts =
 $('#pickdate')
   .datetimepicker(opts)
   .on 'dp.change', () ->
-    vue.setDates new Date($('#pickdate').data('date'))
+    console.log "date changed"
+    d = new Date($('#pickdate').data('date'))
+    vue.setDates d if d?
 
 vue = new Vue
   el: '#app'
@@ -57,9 +59,12 @@ vue = new Vue
     bonds:      { }
     change:     { win: 0, loss: 0, even: 0 }
     totals:     { companies: 0, bonds: 0 }
+    monthNames: [ "January", "February", "March", "April", "May", "June", "July",
+                  "August", "September", "October", "Nobember", "December" ]
 
   methods:
     setDates: (d) -> # sets from (monday), to (friday, or today) 
+      return unless d?
       @date = d
       today = new Date()
       @from = new Date(d.getFullYear(), d.getMonth(), 1)

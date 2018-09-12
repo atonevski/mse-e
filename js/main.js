@@ -17,7 +17,8 @@ createWindow = function() {
     width: 1000,
     height: 600,
     title: 'MSE',
-    background: '#fdf6e3'
+    background: '#fdf6e3',
+    icon: './img/mse-e-logo.png'
   });
   win.loadFile('./views/last.html');
   win.webContents.openDevTools();

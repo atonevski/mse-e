@@ -54,7 +54,12 @@ opts = {
 };
 
 $('#pickdate').datetimepicker(opts).on('dp.change', function() {
-  return vue.setDates(new Date($('#pickdate').data('date')));
+  var d;
+  console.log("date changed");
+  d = new Date($('#pickdate').data('date'));
+  if (d != null) {
+    return vue.setDates(d);
+  }
 });
 
 vue = new Vue({
@@ -74,11 +79,15 @@ vue = new Vue({
     totals: {
       companies: 0,
       bonds: 0
-    }
+    },
+    monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Nobember", "December"]
   },
   methods: {
     setDates: function(d) {
       var last, today;
+      if (d == null) {
+        return;
+      }
       this.date = d;
       today = new Date();
       this.from = new Date(d.getFullYear(), d.getMonth(), 1);

@@ -21,7 +21,7 @@ createWindow = () ->
             width: 1000, height: 600
             title: 'MSE'
             background: '#fdf6e3'
-            # icon: './img/air-e.png'
+            icon: './img/mse-e-logo.png'
 
   win.loadFile './views/last.html'
   

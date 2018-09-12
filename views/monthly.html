@@ -28,7 +28,6 @@
     </style>
   </head>
   <body class='container'>
-      
       <div class='row'>
         <div class='col-md-4'>
           <div class="input-group date" id="pickdate">
@@ -41,12 +40,11 @@
       </div>
 
     <div id='app'>
-      <h3 v-show='Object.keys(companies).length > 0'>Aggregated monthly report for
-            <span>{{ from | toDMY('.') }}</span>&mdash;<span>{{ to | toDMY('.') }}</span>
-      </h3>
-      
-      <div class='table-responsive' v-show='Object.keys(companies).length > 0'>
+      <h3 v-show='Object.keys(companies).length > 0'>Aggregated monthly report for {{ monthNames[date.getMonth()] }}&nbsp;{{ date.getFullYear() }}</h3>
+      <div class='table-responsive'
+        v-show='Object.keys(companies).length > 0'>
         <table class='table table-striped table-hover table-condensed'>
+          <caption v-show='Object.keys(companies).length > 0'>Monthly list for {{ monthNames[date.getMonth()] }}&nbsp;{{ date.getFullYear() }}</caption>
           <tbody v-for='(trns, company) in companies'>
             <tr><th colspan='4'>{{ company }}</th></tr>
             <tr>
@@ -90,11 +88,10 @@
       </div>
 
 
-      <h3 v-show='Object.keys(bonds).length > 0'>Aggregated monthly report for bonds
-            <span>{{ from | toDMY('.') }}</span>&mdash;<span>{{ to | toDMY('.') }}</span>
-      </h3>
+      <h3 v-show='Object.keys(bonds).length > 0'>Aggregated monthly report for bonds {{ monthNames[date.getMonth()] }}&nbsp;{{ date.getFullYear() }}</h3>
       <div class='table-responsive' v-show='Object.keys(bonds).length > 0'>
-        <table class='table table-striped table-hover table-condensed'>
+        <table class='table table-striped table-hover table-condensed' v-show='date !== null'>
+          <caption>Monthly list for {{ monthNames[date.getMonth()] }}&nbsp;{{ date.getFullYear() }}</caption>
           <tbody v-for='(bnd, title) in bonds'>
             <tr><th colspan='4'>{{ title }}</th></tr>
             <tr>
