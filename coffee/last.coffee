@@ -195,6 +195,32 @@ vue = new Vue
         .join(s)
 
 
+ipc = require('electron').ipcRenderer
+searchViewEl = document.getElementById 'search-view'
+appEl = document.getElementById 'app'
+
+win = require('electron').BrowserWindow
+
+console.log searchViewEl
+console.log ipc
+
+
+ipc.on 'perform-search', (event, arg) ->
+  console.log 'IPC'
+  console.log "Perform search: #{ arg }"
+  return null
+
+# searchViewEl.addEventListener 'ipc-message', (event) ->
+#   switch event.channel
+#     when 'perform-search'
+#       console.log "Search for: #{ event.args[0] }"
+#       # appEl.findInPage event.args[0]
+#       # ipc.webContents.findInPage event.args[0]
+#     when 'stop-search'
+#       console.log  "Stop search."
+# 
+#   return null
+      
 # TODO:
 #  - home view should become last and add report in menu
 #  - create views for last day, specific date, weekly, mounthly

@@ -79,6 +79,18 @@ createWindow = () ->
 app.on 'ready', () ->
   createWindow()
 
+  ipc = electron.ipcMain
+  # console.log ipc
+
+  ipc.on 'perform-search', (event, arg) ->
+    console.log "MAIN: perform search #{ arg }"
+    win.webContents.findInPage arg
+    # event.sender.webContents.findInPage arg
+    return
+
+  ipc.on 'found-in-page', (event, result) ->
+    console.log "found in page #{ result.activeMatchOrdinal }/#{ result.matches }"
+
   # process command arguments via process.argv
 
   # create other windows here

@@ -72,7 +72,16 @@ createWindow = function() {
 };
 
 app.on('ready', function() {
-  return createWindow();
+  var ipc;
+  createWindow();
+  ipc = electron.ipcMain;
+  ipc.on('perform-search', function(event, arg) {
+    console.log("MAIN: perform search " + arg);
+    win.webContents.findInPage(arg);
+  });
+  return ipc.on('found-in-page', function(event, result) {
+    return console.log("found in page " + result.activeMatchOrdinal + "/" + result.matches);
+  });
 });
 
 app.on('activate', function() {

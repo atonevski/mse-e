@@ -10,15 +10,24 @@
       th.left { text-align: left; }
       th.right { text-align: right; }
       tbody.totals { font-weight: bold; }
+
+      .search {
+        position: fixed;
+        height: 50px;
+        bottom: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100%;
+      }
     </style>
   </head>
-  <body class='container'>
-    <div id='app'>
+  <body>
+    <div id='app' class='container'>
       <!-- if there is a report, then there are trns -->
       <h3 vshow='trns.length > 0'>Last report <span>{{ date | toDMY('.') }}</span></h3>
       <div class='table-responsive'>
         <table class='table table-striped table-hover table-condensed'
-               v-show='trns.length > 0'>
+              v-show='trns.length > 0'>
           <caption>Daily list for {{ date | toDMY('.') }}</caption>
           <thead>
             <tr>
@@ -81,7 +90,12 @@
       <h4 v-show='bonds.length > 0'>Total {{ totals.bonds | number }}</h4>
 
       <h3 v-show='bonds.length > 0'>Total sales {{ Math.ceil(totals.bonds + totals.trns) | number }}</h3>
-    </div> <!-- #app -->
+      <br />
+      <br />
+    </div> <!-- #app, .contents -->
+
+    <webview id='search-view' src='../views/search.html' class='row search' nodeintegration>
+    </webview>
     <script src='../js/last.js'></script>
   </body>
 </html>

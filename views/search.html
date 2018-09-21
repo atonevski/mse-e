@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Search</title>
+    <link rel="stylesheet" href="../css/bootstrap-solarized-light.css">
+    <!--
+    <script src='../js/vue.js'></script>
+    -->
+    <style>
+      body {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='row'>
+      <div class='form-inline'>
+        <div class='form-group'>
+          <div class='input-group col-lg-4 col-md-4 col-sm-4'>
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-search"></span> 
+            </span>
+            <input id='search-input' class='form-control' type='text'
+                   placeholder='Search text here...' autofocus></input>
+          </div>
+        </div>
+        <button id='search-prev' class='btn btn-default'>
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </button>
+        <button id='search-next' class='btn btn-default'>
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+      </div>
+    </div>
+    <script src='../js/search.js'></script>
+  </body>
+</html>
