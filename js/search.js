@@ -27,8 +27,6 @@ prevEl.addEventListener('click', function() {
 
 cancelEl.addEventListener('click', function() {
   ipc.send('stop-search', inputEl.value);
-  prevEl.disabled = true;
-  nextEl.disabled = true;
   return console.log("stop-search");
 });
 

@@ -18,8 +18,8 @@ prevEl.addEventListener 'click', () ->
 cancelEl.addEventListener 'click', () ->
   ipc.send 'stop-search', inputEl.value
   # inputEl.value = ''
-  prevEl.disabled = yes
-  nextEl.disabled = yes
+  # prevEl.disabled = yes
+  # nextEl.disabled = yes
   console.log "stop-search"
 
   

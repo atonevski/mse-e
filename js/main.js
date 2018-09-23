@@ -14,17 +14,18 @@ win = null;
 winSearch = null;
 
 createWindow = function() {
-  var menu, mnutmpl;
+  var menu, mnutmpl, setSearchWinPos;
   win = new BrowserWindow({
     width: 1000,
     height: 600,
+    minWidth: 600,
+    minHeight: 200,
     title: 'MSE',
     background: '#fdf6e3',
     icon: './img/mse-e-logo.png'
   });
   win.loadFile('./views/last.html');
   win.webContents.openDevTools();
-  console.log("Win pos:", win.getPosition());
   mnutmpl = [
     {
       label: 'Reports',
@@ -79,15 +80,36 @@ createWindow = function() {
       return winSearch.close();
     }
   });
+  setSearchWinPos = function() {
+    var h, ref, ref1, ref2, w, wh, ww, x, y;
+    ref = win.getPosition(), x = ref[0], y = ref[1];
+    ref1 = win.getSize(), w = ref1[0], h = ref1[1];
+    ref2 = win.getContentSize(), ww = ref2[0], wh = ref2[1];
+    return winSearch.setPosition(x + ww - 460 - 10, y + (h - wh) + 10);
+  };
+  win.on('move', function() {
+    return setSearchWinPos();
+  });
+  win.on('resize', function() {
+    return setSearchWinPos();
+  });
+  win.once('did-finish-load', function() {
+    return setSearchWinPos();
+  });
   return null;
 };
 
 app.on('ready', function() {
-  var ipc;
+  var h, ipc, ref, ref1, ref2, w, wh, ww, x, y;
   createWindow();
+  ref = win.getPosition(), x = ref[0], y = ref[1];
+  ref1 = win.getSize(), w = ref1[0], h = ref1[1];
+  ref2 = win.getContentSize(), ww = ref2[0], wh = ref2[1];
   winSearch = new BrowserWindow({
-    width: 500,
+    width: 460,
     height: 80,
+    x: x + ww - 460 - 10,
+    y: y + (h - wh) + 10,
     show: false,
     frame: false,
     resizable: false,
