@@ -12,6 +12,7 @@ url       = require 'url'
 # Keep a global reference of the window object, if you don't, the window will
 # be closed automatically when the JavaScript object is garbage collected.
 win = null
+winSearch = null
 
 # when app logo is ready we can use it
 # icon = nativeImage.createFromPath path.join __dirname, './img/air-e.png'
@@ -27,7 +28,7 @@ createWindow = () ->
   
   # win.maximize()
   win.webContents.openDevTools()
-  console.log process.argv
+  console.log "Win pos:", win.getPosition()
 
   # build menu
   mnutmpl = [
@@ -57,6 +58,7 @@ createWindow = () ->
         }
       ]
     },
+    { label: 'Find', accelerator: 'Ctrl+F', click: () -> winSearch.show() }
     { label: 'Quit', accelerator: 'Ctrl+Q', click: () -> app.quit() }
   ]
   menu = Menu.buildFromTemplate mnutmpl
@@ -69,6 +71,7 @@ createWindow = () ->
   win.on 'closed', () ->
     # close any other windows here
     win = null  
+    winSearch.close() if winSearch?
 
   # return val from createWindow()
   null
@@ -79,13 +82,44 @@ createWindow = () ->
 app.on 'ready', () ->
   createWindow()
 
+  winSearch = new BrowserWindow
+                width: 500
+                height: 80
+                show: false
+                frame: no
+                resizable: no
+                closable: no
+
+  winSearch.loadFile './views/search.html'
+
   ipc = electron.ipcMain
   # console.log ipc
 
   ipc.on 'perform-search', (event, arg) ->
     console.log "MAIN: perform search #{ arg }"
     win.webContents.findInPage arg
-    # event.sender.webContents.findInPage arg
+    event.sender.send 'get-focus'
+    return
+
+  ipc.on 'clear-search', (event, arg) ->
+    console.log "Clear search"
+    win.webContents.stopFindInPage 'clearSelection'
+    return
+
+  ipc.on 'stop-search', (event, arg) ->
+    winSearch.hide()
+    console.log "Stop! search #{ arg }"
+    win.webContents.stopFindInPage 'clearSelection'
+    return
+
+  ipc.on 'search-next', (event, arg) ->
+    console.log "Search NEXT"
+    win.webContents.findInPage arg, findNext: yes
+    return
+
+  ipc.on 'search-prev', (event, arg) ->
+    console.log "Search PREV"
+    win.webContents.findInPage arg, forward: no, findNext: yes
     return
 
   ipc.on 'found-in-page', (event, result) ->

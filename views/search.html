@@ -11,29 +11,56 @@
       body {
         padding-left: 20px;
         padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
       }
+      button.no-border { border: none; }
     </style>
   </head>
   <body>
-    <div class='row'>
-      <div class='form-inline'>
-        <div class='form-group'>
-          <div class='input-group col-lg-4 col-md-4 col-sm-4'>
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-search"></span> 
-            </span>
-            <input id='search-input' class='form-control' type='text'
-                   placeholder='Search text here...' autofocus></input>
-          </div>
+    <div style='display: flex; flex-flow: row wrap; align-items: center;'>
+      <div style='width: 300px;'>
+        <div class='input-group'>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-search"></span> 
+          </span>
+          <input id='search-input' class='form-control' type='text'
+                placeholder='Search text here...' autofocus>
         </div>
-        <button id='search-prev' class='btn btn-default'>
-          <span class="glyphicon glyphicon-chevron-left"></span>
-        </button>
-        <button id='search-next' class='btn btn-default'>
-          <span class="glyphicon glyphicon-chevron-right"></span>
-        </button>
+      </div>
+      <div style='display: inline;'>
+        <button id='search-prev' class='btn btn-default no-border' disabled>
+          <span>&lt;</span></button>  
+        <button id='search-next' class='btn btn-default no-border' disabled>
+          <span>&gt;</span></button> 
+        <button id='search-cancel' class='btn btn-default no-border'>
+          <span>&times;</span></button> 
       </div>
     </div>
+    <!--
+    <div class='form form-inline'>
+      <div class='row' style='display: inline!important;'>
+        <div class='form-group col-lg-4 col-md-4 col-sm-4'>
+            <div class='input-group'>
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-search"></span> 
+              </span>
+              <input id='search-input' class='form-control' type='text'
+                    style='width: 250px;'
+                    placeholder='Search text here...' autofocus>
+            </div>
+        </div>
+        <div class='form-group'>
+          <button id='search-prev' class='btn btn-default no-border' disabled>
+            <span>&lt;</span></button>  
+          <button id='search-next' class='btn btn-default no-border' disabled>
+            <span>&gt;</span></button> 
+        </div>
+        <button id='search-cancel' class='close'>
+          <span>&times;</span></button> 
+      </div>
+    </div>
+    -->
     <script src='../js/search.js'></script>
   </body>
 </html>

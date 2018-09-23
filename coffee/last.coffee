@@ -194,21 +194,21 @@ vue = new Vue
         .reverse()
         .join(s)
 
-
-ipc = require('electron').ipcRenderer
-searchViewEl = document.getElementById 'search-view'
-appEl = document.getElementById 'app'
-
-win = require('electron').BrowserWindow
-
-console.log searchViewEl
-console.log ipc
-
-
-ipc.on 'perform-search', (event, arg) ->
-  console.log 'IPC'
-  console.log "Perform search: #{ arg }"
-  return null
+# # this should be removed
+# ipc = require('electron').ipcRenderer
+# searchViewEl = document.getElementById 'search-view'
+# appEl = document.getElementById 'app'
+# 
+# win = require('electron').BrowserWindow
+# 
+# console.log searchViewEl
+# console.log ipc
+# 
+# 
+# ipc.on 'perform-search', (event, arg) ->
+#   console.log 'IPC'
+#   console.log "Perform search: #{ arg }"
+#   return null
 
 # searchViewEl.addEventListener 'ipc-message', (event) ->
 #   switch event.channel
