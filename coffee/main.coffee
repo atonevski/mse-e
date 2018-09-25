@@ -58,7 +58,10 @@ createWindow = () ->
         }
       ]
     },
-    { label: 'Find', accelerator: 'Ctrl+F', click: () -> winSearch.show() }
+    { label: 'Find', accelerator: 'Ctrl+F', click: () -> winSearch.show() },
+    {
+      label: 'Debug', accelerator: 'Ctrl+Shift+I', click: () ->win.webContents.toggleDevTools()
+    },
     { label: 'Quit', accelerator: 'Ctrl+Q', click: () -> app.quit() }
   ]
   menu = Menu.buildFromTemplate mnutmpl

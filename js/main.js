@@ -65,6 +65,12 @@ createWindow = function() {
         return winSearch.show();
       }
     }, {
+      label: 'Debug',
+      accelerator: 'Ctrl+Shift+I',
+      click: function() {
+        return win.webContents.toggleDevTools();
+      }
+    }, {
       label: 'Quit',
       accelerator: 'Ctrl+Q',
       click: function() {
