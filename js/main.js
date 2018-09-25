@@ -85,7 +85,7 @@ createWindow = function() {
     ref = win.getPosition(), x = ref[0], y = ref[1];
     ref1 = win.getSize(), w = ref1[0], h = ref1[1];
     ref2 = win.getContentSize(), ww = ref2[0], wh = ref2[1];
-    return winSearch.setPosition(x + ww - 460 - 10, y + (h - wh) + 10);
+    return winSearch.setPosition(x + ww - 500 - 10, y + (h - wh) + 10);
   };
   win.on('move', function() {
     return setSearchWinPos();
@@ -106,9 +106,9 @@ app.on('ready', function() {
   ref1 = win.getSize(), w = ref1[0], h = ref1[1];
   ref2 = win.getContentSize(), ww = ref2[0], wh = ref2[1];
   winSearch = new BrowserWindow({
-    width: 460,
+    width: 500,
     height: 80,
-    x: x + ww - 460 - 10,
+    x: x + ww - 500 - 10,
     y: y + (h - wh) + 10,
     show: false,
     frame: false,

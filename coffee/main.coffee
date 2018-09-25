@@ -78,7 +78,7 @@ createWindow = () ->
     [w, h] = win.getSize()
     [ww, wh] = win.getContentSize()
   
-    winSearch.setPosition x + ww - 460 - 10, y + (h - wh) + 10
+    winSearch.setPosition x + ww - 500 - 10, y + (h - wh) + 10
 
   win.on 'move', () -> setSearchWinPos()
   win.on 'resize', () -> setSearchWinPos()
@@ -100,8 +100,8 @@ app.on 'ready', () ->
   [ww, wh] = win.getContentSize()
   
   winSearch = new BrowserWindow
-                width: 460, height: 80
-                x: x + ww - 460 - 10, y: y + (h - wh) + 10
+                width: 500, height: 80
+                x: x + ww - 500 - 10, y: y + (h - wh) + 10
                 show: false
                 frame: no
                 resizable: no
