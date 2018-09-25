@@ -118,7 +118,7 @@ app.on('ready', function() {
   winSearch.loadFile('./views/search.html');
   ipc = electron.ipcMain;
   ipc.on('perform-search', function(event, arg) {
-    console.log("MAIN: perform search " + arg);
+    console.log("Perform search " + arg);
     win.webContents.findInPage(arg);
     event.sender.send('get-focus');
   });
@@ -144,9 +144,14 @@ app.on('ready', function() {
       findNext: true
     });
   });
-  return ipc.on('found-in-page', function(event, result) {
-    return console.log("found in page " + result.activeMatchOrdinal + "/" + result.matches);
+  win.webContents.on('found-in-page', function(event, result) {
+    console.log("found in page " + result.activeMatchOrdinal + "/" + result.matches);
+    winSearch.webContents.send('search-results', {
+      current: result.activeMatchOrdinal,
+      matches: result.matches
+    });
   });
+  return null;
 });
 
 app.on('activate', function() {

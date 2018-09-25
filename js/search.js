@@ -50,6 +50,13 @@ ipc.on('get-focus', function() {
   inputEl.focus();
 });
 
-ipc.on('found-in-page', function(event, result) {
-  console.log("IN SEARCH: found in page " + result.activeMatchOrdinal + "/" + result.matches);
+ipc.on('ipc-message', function(e, r) {
+  console.log("received message:", e.channel);
+});
+
+window.addEventListener("load", function(event) {
+  console.log("Search DOM ready!");
+  return ipc.on('search-results', function(event, result) {
+    console.log("Got search results:", result);
+  });
 });

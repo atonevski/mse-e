@@ -44,6 +44,13 @@ ipc.on 'get-focus', () ->
   inputEl.focus()
   return
 
-ipc.on 'found-in-page', (event, result) ->
-  console.log "IN SEARCH: found in page #{ result.activeMatchOrdinal }/#{ result.matches }"
+
+ipc.on 'ipc-message', (e, r) ->
+  console.log "received message:", e.channel
   return
+
+window.addEventListener "load", (event) ->
+  console.log "Search DOM ready!"
+  ipc.on 'search-results', (event, result) ->
+    console.log "Got search results:", result
+    return

@@ -113,7 +113,7 @@ app.on 'ready', () ->
   # console.log ipc
 
   ipc.on 'perform-search', (event, arg) ->
-    console.log "MAIN: perform search #{ arg }"
+    console.log "Perform search #{ arg }"
     win.webContents.findInPage arg
     event.sender.send 'get-focus'
     return
@@ -139,12 +139,14 @@ app.on 'ready', () ->
     win.webContents.findInPage arg, forward: no, findNext: yes
     return
 
-  ipc.on 'found-in-page', (event, result) ->
+  win.webContents.on 'found-in-page', (event, result) ->
     console.log "found in page #{ result.activeMatchOrdinal }/#{ result.matches }"
+    winSearch.webContents.send 'search-results',
+        current: result.activeMatchOrdinal
+        matches: result.matches
+    return
 
-  # process command arguments via process.argv
-
-  # create other windows here
+  null
 
 # On macOS it's common to re-create a window in the app when the
 # dock icon is clicked and there are no other windows open.
