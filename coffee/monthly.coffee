@@ -46,6 +46,8 @@ $('#pickdate')
     console.log "date changed"
     d = new Date($('#pickdate').data('date'))
     vue.setDates d if d?
+    document.getElementById('select-month-reminder')
+            .style.display = 'none'
 
 vue = new Vue
   el: '#app'

@@ -53,7 +53,8 @@ opts = {
 };
 
 $('#pickdate').datetimepicker(opts).on('dp.change', function() {
-  return vue.setDate(new Date($('#pickdate').data('date')));
+  vue.setDate(new Date($('#pickdate').data('date')));
+  return document.getElementById('select-date-reminder').style.display = 'none';
 }).on('dp.update', function() {
   return vue.setDate(new Date($('#pickdate').data('date')));
 });

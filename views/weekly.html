@@ -28,17 +28,18 @@
     </style>
   </head>
   <body class='container'>
-      
-      <div class='row'>
-        <div class='col-md-4'>
-          <div class="input-group date" id="pickdate">
-            <input type="text" class="form-control" />
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-calendar"></span> 
-            </span>
-          </div>
+    
+    <h4 id='select-week-reminder'>Select week</h4>
+    <div class='row'>
+      <div class='col-md-4'>
+        <div class="input-group date" id="pickdate">
+          <input type="text" class="form-control" />
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span> 
+          </span>
         </div>
       </div>
+    </div>
 
     <div id='app'>
       <h3 v-show='Object.keys(companies).length > 0'>Aggregated weekly report for

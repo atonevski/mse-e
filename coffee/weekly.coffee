@@ -42,6 +42,9 @@ $('#pickdate')
   .datetimepicker(opts)
   .on 'dp.change', () ->
     vue.setDates new Date($('#pickdate').data('date'))
+    document.getElementById('select-week-reminder')
+            .style.display = 'none'
+
 
 vue = new Vue
   el: '#app'

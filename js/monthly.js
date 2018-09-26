@@ -58,8 +58,9 @@ $('#pickdate').datetimepicker(opts).on('dp.change', function() {
   console.log("date changed");
   d = new Date($('#pickdate').data('date'));
   if (d != null) {
-    return vue.setDates(d);
+    vue.setDates(d);
   }
+  return document.getElementById('select-month-reminder').style.display = 'none';
 });
 
 vue = new Vue({

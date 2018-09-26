@@ -42,6 +42,8 @@ $('#pickdate')
   .datetimepicker(opts)
   .on 'dp.change', () ->
     vue.setDate new Date($('#pickdate').data('date'))
+    document.getElementById('select-date-reminder')
+            .style.display = 'none'
   .on 'dp.update', () ->
     vue.setDate new Date($('#pickdate').data('date'))
 

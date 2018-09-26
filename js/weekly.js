@@ -54,7 +54,8 @@ opts = {
 };
 
 $('#pickdate').datetimepicker(opts).on('dp.change', function() {
-  return vue.setDates(new Date($('#pickdate').data('date')));
+  vue.setDates(new Date($('#pickdate').data('date')));
+  return document.getElementById('select-week-reminder').style.display = 'none';
 });
 
 vue = new Vue({
