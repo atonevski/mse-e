@@ -24,6 +24,7 @@ createWindow = () ->
             title: 'MSE'
             background: '#fdf6e3'
             icon: './img/mse-e-logo.png'
+            maximizable: yes
 
   win.loadFile './views/last.html'
   
@@ -82,9 +83,12 @@ createWindow = () ->
     [ww, wh] = win.getContentSize()
   
     winSearch.setPosition x + ww - 500 - 10, y + (h - wh) + 10
+    # console.log "new position: ", [x, y]
+    # console.log "new size: ", [w, h]
 
   win.on 'move', () -> setSearchWinPos()
   win.on 'resize', () -> setSearchWinPos()
+  win.on 'maximize', () -> setSearchWinPos()
 
   win.once 'did-finish-load', () ->setSearchWinPos()
 

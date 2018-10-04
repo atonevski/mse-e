@@ -22,7 +22,8 @@ createWindow = function() {
     minHeight: 200,
     title: 'MSE',
     background: '#fdf6e3',
-    icon: './img/mse-e-logo.png'
+    icon: './img/mse-e-logo.png',
+    maximizable: true
   });
   win.loadFile('./views/last.html');
   win.webContents.openDevTools();
@@ -97,6 +98,9 @@ createWindow = function() {
     return setSearchWinPos();
   });
   win.on('resize', function() {
+    return setSearchWinPos();
+  });
+  win.on('maximize', function() {
     return setSearchWinPos();
   });
   win.once('did-finish-load', function() {
