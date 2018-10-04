@@ -25,6 +25,7 @@
       body { margin-top: 50px; }
       td.total { font-weight: bold; }
       td.tborder { border-top: 1px solid #bbb !important; }
+      [v-cloak] { display: none; }
     </style>
   </head>
   <body class='container'>
@@ -42,11 +43,11 @@
     </div>
 
     <div id='app'>
-      <h3 v-show='Object.keys(companies).length > 0'>Aggregated weekly report for
+      <h3 v-cloak v-show='Object.keys(companies).length > 0'>Aggregated weekly report for
             <span>{{ from | toDMY('.') }}</span>&mdash;<span>{{ to | toDMY('.') }}</span>
       </h3>
       
-      <div class='table-responsive' v-show='Object.keys(companies).length > 0'>
+      <div v-cloak class='table-responsive' v-show='Object.keys(companies).length > 0'>
         <table class='table table-striped table-hover table-condensed'>
           <tbody v-for='(trns, company) in companies'>
             <tr><th colspan='4'>{{ company }}</th></tr>
@@ -77,11 +78,11 @@
           </tbody>
         </table>
       </div>
-      <h4 v-show='Object.keys(companies).length > 0'>
+      <h4 v-cloak v-show='Object.keys(companies).length > 0'>
         Total {{ totals.companies | number }}
       </h4>
       <div class='row'>
-        <div class='col-md-6' v-show='Object.keys(companies).length > 0'>
+        <div class='col-md-6' v-show='Object.keys(companies).length > 0' v-cloak>
           <dl class='dl-horizontal'>
             <dt>Winners</dt><dd class='text-success'>{{ change.win }}</dd>
             <dt>Loosers</dt><dd class='text-danger'>{{ change.loss }}</dd>
@@ -91,10 +92,10 @@
       </div>
 
 
-      <h3 v-show='Object.keys(bonds).length > 0'>Aggregated weekly report for bonds
+      <h3 v-cloak v-show='Object.keys(bonds).length > 0'>Aggregated weekly report for bonds
             <span>{{ from | toDMY('.') }}</span>&mdash;<span>{{ to | toDMY('.') }}</span>
       </h3>
-      <div class='table-responsive' v-show='Object.keys(bonds).length > 0'>
+      <div v-cloak class='table-responsive' v-show='Object.keys(bonds).length > 0'>
         <table class='table table-striped table-hover table-condensed'>
           <tbody v-for='(bnd, title) in bonds'>
             <tr><th colspan='4'>{{ title }}</th></tr>
@@ -124,11 +125,11 @@
           </tbody>
         </table>
       </div>
-      <h4 v-show='Object.keys(bonds).length > 0'>
+      <h4 v-cloak v-show='Object.keys(bonds).length > 0'>
         Total {{ Math.ceil(totals.bonds) | number }}
       </h4>
 
-      <h3 v-show='Object.keys(companies).length > 0'>
+      <h3 v-cloak v-show='Object.keys(companies).length > 0'>
         Total sales {{ Math.ceil(totals.bonds + totals.companies) | number }}
       </h3>
     </div> <!-- #app -->

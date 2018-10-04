@@ -13,3 +13,9 @@ Run `coffee -o js/ -wcb coffee/` to compile any changes in `.coffee` files.
 
 In development run `npm start` from the root of the project
 
+# TODO
+
+Some features left to do in future:
+* Update the `README.md`
+* Include screen shots
+* Fix the search window position to reflect resize, move, maximize etc.
